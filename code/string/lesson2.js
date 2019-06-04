@@ -24,3 +24,27 @@ export default (str) => {
   }
   return r
 }
+
+var countBinarySubstrings = function(s) {
+  var count=0
+//     匹配条件
+  function match(str){
+    let j=str.match(/(0+|1+)/)[0]
+    let o=(j[0]^1).toString().repeat(j.length)
+    let q=j+o
+    if(str.startsWith(q)){
+      return true
+    }else{
+      return false
+    }
+  }
+
+//     按顺序截取字符串，满足条件数量加1
+  for(var i=0;i<s.length-1;i++){
+    var sub=match(s.slice(i))
+    if(sub){
+      count++
+    }
+  }
+  return count
+};
